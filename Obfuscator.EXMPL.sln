@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Obfuscator.EXMPL", "Obfuscator.EXMPL\Obfuscator.EXMPL.csproj", "{F3AFAB5F-6213-4E1D-A5BC-64D87E5EBDC2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F3AFAB5F-6213-4E1D-A5BC-64D87E5EBDC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3AFAB5F-6213-4E1D-A5BC-64D87E5EBDC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3AFAB5F-6213-4E1D-A5BC-64D87E5EBDC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3AFAB5F-6213-4E1D-A5BC-64D87E5EBDC2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

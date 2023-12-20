@@ -1,0 +1,15 @@
+﻿using System;
+
+public class HelloWorld {
+    static string ImportandData = "Not important data";
+    
+    public static void Main(string[] args) {
+        Console.WriteLine (ImportandData + " | " + new Test().GetData());
+    }
+    
+    private class Test {
+        public string GetData() {
+            return "DATA!";
+        }
+    }
+}
