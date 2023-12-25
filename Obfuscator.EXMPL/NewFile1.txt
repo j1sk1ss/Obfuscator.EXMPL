@@ -1,15 +1,51 @@
 ﻿using System;
-
-public class HelloWorld {
-    static string ImportandData = "Not important data";
-    
-    public static void Main(string[] args) {
-        Console.WriteLine (ImportandData + " | " + new Test().GetData());
-    }
-    
-    private class Test {
-        public string GetData() {
-            return "DATA!";
+class HelloWorld {
+static void Main()
+    {
+        string nick1, nick2; // Никнеймы игроков
+        Console.WriteLine("Игрок 1, введите свой никнейм"); 
+        nick1 = Console.ReadLine();
+        Console.WriteLine("Игрок 2, введите свой никнейм");
+        nick2 = Console.ReadLine();
+        bool f = true;
+        Random rand = new Random();
+        int n = rand.Next(20, 31), m;
+        while (n > 0)
+        {
+            Console.WriteLine(n);
+            Console.WriteLine("{0}, ваш ход", f ? nick1 : nick2);
+            if (f)
+            {
+                /*
+                    При старте, игрокам предлагается ввести свои никнеймы.
+                    Никнеймы хранятся до конца игры.
+                    Программа загадывает случайное число gameNumber от 12 до 120 сообщая это число игрокам.
+                    Игроки ходят по очереди(игра сообщает о ходе текущего игрока)
+                    Игрок, ход которого указан вводит число userTry, которое может принимать значения 1, 2, 3 или 4,
+                    введенное число вычитается из gameNumber
+                    Новое значение gameNumber показывается игрокам на экране.
+                    Выигрывает тот игрок, после чьего хода gameNumber обратилась в ноль.
+                    Игра поздравляет победителя, предлагая сыграть реванш
+                */
+            
+                m = int.Parse(Console.ReadLine()); // Ввод игрока
+                while (!(m >= 1 && m <= 4))
+                {
+                    Console.WriteLine("Некорректный ход! {0}, повторите ввод", f ? nick1 : nick2);
+                    m = int.Parse(Console.ReadLine());
+                }
+            }
+            else
+            {
+                m = rand.Next(1, 5); // от 1 до 4 включительно
+                Console.WriteLine(nick2 + " походил " + m);
+            }
+ 
+            n -= m;
+            f = !f;
         }
+        Console.WriteLine(0);
+        Console.WriteLine("{0} победил!", f ? nick2 : nick1);
+        Console.ReadKey();
     }
 }

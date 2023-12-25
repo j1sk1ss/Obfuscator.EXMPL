@@ -1,4 +1,6 @@
-﻿namespace Obfuscator.EXMPL.OBJECTS.STRUCTURES;
+﻿using System.Text.RegularExpressions;
+
+namespace Obfuscator.EXMPL.OBJECTS.STRUCTURES;
 
 public abstract class Structure {
     protected Structure(bool isConstant) {
@@ -58,6 +60,13 @@ public abstract class Structure {
         Type = Type.Replace("private", "");
     }
 
+    public void DeleteComments() {
+        for (var i = 0; i < Body.Count; i++) {
+            Body[i] = Regex.Replace(Body[i], @"/\*(.*?)\*/", "");
+            Body[i] = Regex.Replace(Body[i], @"//(.*?)\r?\n", "");
+        }
+    }
+    
     public virtual string GetLine() => string.Join("", Body);
     
     private static string RandomString(int length) {

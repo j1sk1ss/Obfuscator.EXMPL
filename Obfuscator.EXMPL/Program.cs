@@ -1,5 +1,6 @@
 ﻿using Obfuscator.EXMPL.OBJECTS.LANGUAGES.LANGS;
 using Obfuscator.EXMPL.OBJECTS.STRUCTURES;
+using Obfuscator = Obfuscator.EXMPL.OBJECTS.Obfuscator;
 
 namespace Obfuscator.EXMPL {
     public class Program {
@@ -10,16 +11,19 @@ namespace Obfuscator.EXMPL {
             var variablesReplace = false;
             var structuresDelete = false;
             var classesSwipe = false;
+            var deleteComments = false;
             while (true) {
                 Console.Clear();
                 Console.WriteLine("Choose operations:\n" +
                                   "1) Replace variables ({0})\n" +
                                   "2) Delete structure ({1})\n" +
                                   "3) Swipe classes ({2})\n" +
-                                  "4) Next",
+                                  "4) Delete comments ({3})\n" +
+                                  "5) Next",
                     variablesReplace ? "Active" : "Deactivated",
                     structuresDelete ? "Active" : "Deactivated",
-                    classesSwipe ? "Active" : "Deactivated"
+                    classesSwipe ? "Active" : "Deactivated",
+                    deleteComments ? "Active" : "Deactivated"
                     );
                 
                 switch (int.Parse(Console.ReadLine()!)) {
@@ -33,6 +37,10 @@ namespace Obfuscator.EXMPL {
                     
                     case 3:
                         classesSwipe = !classesSwipe;
+                        continue;
+                    
+                    case 4:
+                        deleteComments = !deleteComments;
                         continue;
                 }
                 
@@ -56,9 +64,15 @@ namespace Obfuscator.EXMPL {
 
                 if (classesSwipe)
                     classes.RandomSwipe();
-                
-                File.WriteAllText("obfuscated.txt", language.GetObfuscated(
-                    new List<Structure> {import}.Concat(classes).ToList()));
+
+                if (deleteComments) {
+                    foreach (var classStructure in classes)
+                        classStructure.DeleteComments();
+                    
+                    import.DeleteComments();
+                }
+
+                File.WriteAllText("obfuscated.txt", new OBJECTS.Obfuscator(null!).Obfuscate(File.ReadAllText(path)));
             }
         }
     }
